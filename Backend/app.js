@@ -3,7 +3,9 @@ dotenv.config();
 const express = require('express');
 const cors= require('cors');
 const app= express();
+const connectToDb= require('./db/db');
 
+connectToDb();
 app.use(cors());
 
 //we are accepting request from all but in production we write it such that it only accepts request from domain
