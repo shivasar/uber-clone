@@ -1,0 +1,2 @@
+Error: write EPROTO 796680:error:100000f7:SSL routines:OPENSSL_internal:WRONG_VERSION_NUMBER:..\..\..\..\src\third_party\boringssl\src\ssl\tls_record.cc:242: 
+was resolved by chnaging https to http
