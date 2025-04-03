@@ -195,3 +195,130 @@ The request body should be in JSON format and include the following fields:
     ]
   }
   ```
+
+---
+
+### Endpoint: `/captains/login`
+
+#### Description
+
+Authenticates a captain using their email and password, returning a JWT token upon successful login.
+
+#### Method
+
+`POST`
+
+#### Request Body
+
+The request body should be in JSON format and include the following fields:
+
+| Field      | Type   | Required | Description                                      |
+| ---------- | ------ | -------- | ------------------------------------------------ |
+| `email`    | String | Yes      | Email address of the captain (must be valid).    |
+| `password` | String | Yes      | Password for the captain (minimum 6 characters). |
+
+#### Response
+
+##### Success Response
+
+- **Status Code**: `200 OK`
+- **Body**:
+  ```json
+  {
+    "token": "jwt_token_here",
+    "captain": {
+      "_id": "captain_id_here",
+      "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+      },
+      "email": "john.doe@example.com",
+      "vehicle": {
+        "color": "Red",
+        "plate": "ABC123",
+        "capacity": 4,
+        "vehicleType": "car"
+      }
+    }
+  }
+  ```
+
+##### Error Response
+
+- **Status Code**: `401 Unauthorized`
+- **Body**:
+  ```json
+  {
+    "message": "Invalid email or password"
+  }
+  ```
+
+---
+
+### Endpoint: `/captains/profile`
+
+#### Description
+
+Retrieves the profile information of the currently authenticated captain.
+
+#### Method
+
+`GET`
+
+#### Authentication
+
+Requires a valid JWT token in the Authorization header:
+`Authorization: Bearer <token>`
+
+#### Response
+
+##### Success Response
+
+- **Status Code**: `200 OK`
+- **Body**:
+  ```json
+  {
+    "captain": {
+      "_id": "captain_id_here",
+      "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+      },
+      "email": "john.doe@example.com",
+      "vehicle": {
+        "color": "Red",
+        "plate": "ABC123",
+        "capacity": 4,
+        "vehicleType": "car"
+      }
+    }
+  }
+  ```
+
+---
+
+### Endpoint: `/captains/logout`
+
+#### Description
+
+Logs out the current captain and blacklists the token provided in the cookie or headers.
+
+#### Method
+
+`GET`
+
+#### Authentication
+
+Requires a valid JWT token in the Authorization header or cookie.
+
+#### Response
+
+##### Success Response
+
+- **Status Code**: `200 OK`
+- **Body**:
+  ```json
+  {
+    "message": "Logout successfully"
+  }
+  ```
