@@ -1,11 +1,7 @@
 const userModel = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const path = require("path");
-const blackListTokenModel = require(path.join(
-  __dirname,
-  "../models/blacklistToken.model"
-));
+const blackListTokenModel = require("../models/blackListToken.model");
 const captainModel = require("../models/captain.model");
 
 module.exports.authUser = async (req, res, next) => {
@@ -24,7 +20,7 @@ module.exports.authUser = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await userModel.findById(decoded._id);
-    //this will return the id of the user from the token because while creating the token we passed the id of the user as payload and the secret key is used to sign the token
+
     req.user = user;
 
     return next();
@@ -58,4 +54,3 @@ module.exports.authCaptain = async (req, res, next) => {
     res.status(401).json({ message: "Unauthorized" });
   }
 };
-
