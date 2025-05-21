@@ -48,12 +48,3 @@ userSchema.statics.hashPassword = async function (password) {
 const userModel = mongoose.model("user", userSchema);
 
 module.exports = userModel;
-//we will use jwt token for password authentication
-/**
- * what is jwt token?
- * https://auth0.com/docs/secure/tokens/json-web-tokens
- */
-// socketId:{
-//   type:String,
-// },
-// //to track location of driver
