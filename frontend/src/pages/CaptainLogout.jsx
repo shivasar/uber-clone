@@ -1,7 +1,7 @@
 
 import React from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 
 export const CaptainLogout = () => {
     const token = localStorage.getItem('captain-token')
